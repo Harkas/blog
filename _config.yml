@@ -6,22 +6,19 @@ paginate: 2 #6
 comments: true
 paginate_path: "/page/:num"
 
-source: source
-destination: _site
-sass:
-  sass_dir: _scss
-  style: compressed
 
-# Site settings
-title: Lora
-description: "A free Jekyll theme"
-email: your-email@domain.com
-baseurl: "https://harkas.github.io/blog" # the subpath of your site, e.g. /blog/
-#url: "http://yourdomain.com"
-url: "https://harkas.github.io"
+# Site setngs
+title: Harkas Blog  #博客主题
+SEOTitle: Harkas的博客 | Harkas Blog
+header-img: img/home-bg.jpg
+# email: harkas@gmail.com
+description: "关于前端与设计、黑客与画家 | Harkas，Web & Mobile Lover，Front-End Engineer，UX Designer | 这里是 @Harkas 的个人博客，与你一起发现更大的世界。"
+keyword: " harkas, @harkas, harkas的博客, Harkas Blog, 博客, 个人网站, 互联网, 前端, 设计, 产品, "
+url: "https://harkas.github.io"              # your host, for absolute URL
+baseurl: "https://harkas.github.io/blog" # the subpath of your site, e.g. /blog/  for example, '/blog' if your blog hosted on 'host/blog'
+
 repository: "https://github.com/harkas/blog"
-disqus_shortname: "fernandomoreira"
-google_analytics: UA-52446115-1
+
 
 # social footer
 social:
