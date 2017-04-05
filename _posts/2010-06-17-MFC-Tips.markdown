@@ -1,0 +1,46 @@
+---
+layout: post
+title:  "MFC 几个问题"
+date:   2010-06-17
+categories: MFC
+description: MFC应用之--问题总结
+---
+
+VS2008与MFC开发时遇到的几个问题总结：
+
+1、Input **.lib时出现 error cannot open fle 'e\my.obj"时如果这时你的lib文件添加没有错误，最主要的问题就是你的lib文件所在的文件路径中有空格，将空格去掉错误解决。
+
+2、菜单栏中 View-->Toolbars and Docking Windows下显示和隐藏工具栏和浮动窗口的选项是一个<placeholder>，这是一个控件，它的实现代码中好像没有体现，所以没有把显示中的Toolbars去掉。
+
+但是再加入一个显示隐藏的菜单时用的EnablePaneMenu函数：
+
+```c++
+EnablePaneMenu(TRUE, ID_VIEW_MONITOR, strMonToolBarName, ID_VIEW_TOOLBAR);
+```
+
+其中**ID_VIEW_MONITOR**表示点击菜单时响应的菜单ID，响应函数消息映射表如下，**strMonToolBarName**表示所加菜单的显示名称，**ID_VIEW_TOOLBAR**是此<placeholder>的名称。
+
+```c++
+ON_COMMAND(ID_VIEW_MONITOR,&CMainFrame::OnViewMonitorBar)
+ON_UPDATE_COMMAND_UI(ID_VIEW_MONITOR,&CMainFrame::OnUpdateMonitorBar)
+```
+
+显示和隐藏是在MainFrame下使用ShowControlBar，代码如下：
+
+```c++
+void CMainFrame::OnViewMonitorBar()
+{
+	ShowControlBar((CControlBar*)&m_wndMonitorBar,!m_bShowMonitor,FALSE);
+	m_bShowMonitor = !m_bShowMonitor;
+}
+```
+
+菜单前面显示的时候打勾，隐藏的时候勾要去掉，对应更新的代码如下：
+
+```c++
+void CMainFrame::OnUpdateMonitorBar(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetCheck(m_bShowMonitor);
+}
+```
+```
